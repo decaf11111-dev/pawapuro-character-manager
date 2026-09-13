@@ -3,13 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>パワプロ2026・2027　キャラ管理｜キャラクター作成・栄冠ナイン管理ツール</title>
+<title>パワプロ　作成キャラ管理ツール｜キャラクター作成・栄冠ナイン管理ツール</title>
 <meta name="description" content="パワプロで作成したキャラクターを、作品・育成モード・星・ポジション・栄冠ナイン記録・画像・タグなどで整理できるブラウザ管理ツールです。データは利用者のブラウザ内に保存されます。" />
 <meta name="robots" content="index,follow" />
 <meta name="theme-color" content="#152238" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="パワプロ2026・2027　キャラ管理" />
+<meta property="og:title" content="パワプロ　作成キャラ管理ツール" />
 <meta property="og:description" content="パワプロで作成したキャラクターを整理・管理できるブラウザツール。栄冠ナイン、星、ポジション、画像、タグ、ソート、バックアップに対応。" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0NJ5GPLCHN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0NJ5GPLCHN');
+</script>
 <style>
 :root{
   --bg:#f6f2ec; --panel:#fffdfa; --ink:#242424; --muted:#6d6a66; --line:#e4dace;
@@ -294,8 +302,8 @@ body.compactMode .favoriteBtn{width:32px;height:32px;font-size:18px}
 <body>
 <div class="app">
   <aside class="sidebar">
-    <div class="logo">パワプロ2026・2027　キャラ管理</div>
-    <div class="sub">キャラクター作成・名簿管理ツール / v3.97</div>
+    <div class="logo">パワプロ　作成キャラ管理ツール</div>
+    <div class="sub">キャラクター作成・名簿管理ツール / v3.99</div>
     <div class="nav">
       <button class="active" data-view="all">全キャラ</button>
       <button data-view="available">作成可能</button>
@@ -313,7 +321,7 @@ body.compactMode .favoriteBtn{width:32px;height:32px;font-size:18px}
       <button data-view="contact">お問い合わせ・不具合報告</button>
     </div>
     <div class="sidebox">
-      <b>完全版 v3.97</b><br>
+      <b>完全版 v3.99</b><br>
       キャラクターの登録・育成情報の管理・バックアップなどを、左メニューからご利用いただけます。
     </div>
   </aside>
@@ -341,7 +349,7 @@ body.compactMode .favoriteBtn{width:32px;height:32px;font-size:18px}
 <div id="modalRoot"></div>
 <div id="toast" class="toast"></div>
 <script>
-const DATA_VERSION = '3.97';
+const DATA_VERSION = '3.99';
 const CONTACT_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSepH-ZdScbl_HDJ3wXhfumMIaoATbIpUcVVgwpb831sFx24tw/viewform';
 const SEED_CHARACTERS = [];
 
@@ -1312,7 +1320,7 @@ function renderDashboard(){
   const st=listState(); const base=baseFiltered();
   const createdNotPro = base.filter(c=>isCreated(creationFrom(st,c)) && allTagsFrom(st,c).includes('未プロ'));
   const favUncreated = base.filter(c=>creationFrom(st,c).favorite && !isCreated(creationFrom(st,c)));
-  $('#view').innerHTML = `<div class="hero"><div class="heroHead"><div><h1>パワプロ2026・2027　キャラ管理 v3.97</h1><p>パワプロで作成したキャラクターを、作品・育成モード・星・ポジション・栄冠ナインの記録などとあわせて管理できます。</p></div><div class="heroActions"><button class="btn" id="openDashboardKpis">表示カード設定</button></div></div></div>${kpis()}<section class="section"><div class="sectionHead"><h2>作成済み未プロ</h2><span class="note">作成済みで、まだプロ入りしていないキャラクターを表示します。</span></div>${renderCardsSmart(createdNotPro.slice(0,12),'該当するキャラクターはありません。')}</section><section class="section"><div class="sectionHead"><h2>お気に入り未作成</h2><span class="note">お気に入りに登録されていて、まだ作成していないキャラクターを表示します。</span></div>${renderCardsSmart(favUncreated.slice(0,12),'該当するキャラクターはありません。')}</section>`;
+  $('#view').innerHTML = `<div class="hero"><div class="heroHead"><div><h1>パワプロ　作成キャラ管理ツール v3.99</h1><p>パワプロで作成したキャラクターを、作品・育成モード・星・ポジション・栄冠ナインの記録などとあわせて管理できます。</p></div><div class="heroActions"><button class="btn" id="openDashboardKpis">表示カード設定</button></div></div></div>${kpis()}<section class="section"><div class="sectionHead"><h2>作成済み未プロ</h2><span class="note">作成済みで、まだプロ入りしていないキャラクターを表示します。</span></div>${renderCardsSmart(createdNotPro.slice(0,12),'該当するキャラクターはありません。')}</section><section class="section"><div class="sectionHead"><h2>お気に入り未作成</h2><span class="note">お気に入りに登録されていて、まだ作成していないキャラクターを表示します。</span></div>${renderCardsSmart(favUncreated.slice(0,12),'該当するキャラクターはありません。')}</section>`;
 }
 function renderAll(){ const st=listState(); const base=baseFiltered(); $('#view').innerHTML=`<section class="section"><div class="sectionHead"><h2>全キャラ</h2><span class="note">${base.length}件</span></div>${renderCardsSmart(base)}</section>`; }
 function renderAvailable(){
@@ -2385,9 +2393,9 @@ function renderDataTools(){
   </section>`;
 }
 function renderAbout(){
-  $('#view').innerHTML=`<section class="section"><div class="sectionHead"><h2>このサイトについて</h2><span class="note">「パワプロ2026・2027　キャラ管理」の概要と、データの取り扱いについてご案内します。</span></div>
+  $('#view').innerHTML=`<section class="section"><div class="sectionHead"><h2>このサイトについて</h2><span class="note">「パワプロ　作成キャラ管理ツール」の概要と、データの取り扱いについてご案内します。</span></div>
     <div class="aboutGrid">
-      <div class="aboutCard"><h3>このサイトについて</h3><p>「パワプロ2026・2027　キャラ管理」は、パワプロで作成するキャラクターの名簿や育成状況を整理・管理するための非公式Webツールです。キャラクターの登録、作成モード・星・ポジション・栄冠ナインの記録、画像、タグなどをまとめて管理できます。</p></div>
+      <div class="aboutCard"><h3>このサイトについて</h3><p>「パワプロ　作成キャラ管理ツール」は、パワプロで作成するキャラクターの名簿や育成状況を整理・管理するための非公式Webツールです。キャラクターの登録、作成モード・星・ポジション・栄冠ナインの記録、画像、タグなどをまとめて管理できます。</p></div>
       <div class="aboutCard"><h3>主な機能</h3><p>キャラクターの個別登録・一括追加、作成状況の管理、プロ選手一覧・卒業生名簿、お気に入り、タグ・ソート設定、画像設定、JSONによるバックアップと復元などをご利用いただけます。</p></div>
       <div class="aboutCard"><h3>データの保存について</h3><p>登録したキャラクター情報や育成データは、基本的にご利用中のブラウザ内に保存されます。同じサイトでも、別の端末や別のブラウザでは自動的に共有されません。</p></div>
       <div class="aboutCard"><h3>バックアップについて</h3><p>ブラウザのサイトデータを削除した場合などに備えて、「データ削除・保存・復元」からJSONバックアップを作成できます。別の端末へデータを移す場合にも、JSONの書き出し・読み込みをご利用ください。</p></div>
@@ -2399,7 +2407,7 @@ function renderAbout(){
 }
 function buildContactReport(){
   const body=$('#contactBody')?.value?.trim() || '';
-  return `【${contactCategory}】\n\n${body || '（内容未入力）'}\n\n---\nアプリ: パワプロ2026・2027　キャラ管理 v${DATA_VERSION}\nURL: ${location.href}\nブラウザ: ${navigator.userAgent}`;
+  return `【${contactCategory}】\n\n${body || '（内容未入力）'}\n\n---\nアプリ: パワプロ　作成キャラ管理ツール v${DATA_VERSION}\nURL: ${location.href}\nブラウザ: ${navigator.userAgent}`;
 }
 function renderContact(){
   const items=[
@@ -2408,7 +2416,7 @@ function renderContact(){
     ['その他問い合わせ','上記に当てはまらないご質問・ご連絡はこちらをご利用ください。']
   ];
   const cards=items.map(([name,desc])=>`<button class="contactCard ${contactCategory===name?'selected':''}" data-action="set-contact-category" data-value="${escapeHtml(name)}"><h3>${escapeHtml(name)}</h3><p>${escapeHtml(desc)}</p></button>`).join('');
-  const meta=`アプリ: パワプロ2026・2027　キャラ管理 v${DATA_VERSION}\nURL: ${location.href}\nブラウザ: ${navigator.userAgent}`;
+  const meta=`アプリ: パワプロ　作成キャラ管理ツール v${DATA_VERSION}\nURL: ${location.href}\nブラウザ: ${navigator.userAgent}`;
   $('#view').innerHTML=`<section class="section"><div class="sectionHead"><h2>お問い合わせ・不具合報告</h2><span class="note">お問い合わせ内容に該当する項目を選択してください。</span></div>
     <div class="contactGrid">${cards}</div>
     <div class="detailPanel"><div class="sectionHead"><h2>${escapeHtml(contactCategory)}</h2><span class="note">内容をご記入のうえ、送信フォームからお知らせください。</span></div>
